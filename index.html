@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Get 10</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    
+    <h1 id="points">3</h1>
+    <button id="3" onclick="add3points()"> ADD 3 POINTS</button>
+     <button id="1" onclick="remove1point()"> REMOVE 1 POINT</button>
+     <h1 id="ggScreen"></h1>
+     <span id="buttonAppear"></span> 
+    <script>
+
+let clickCheck = 0
+let clickCheck2 = 0
+let myPoints = 3
+let Points = document.getElementById("points")
+let gg = document.getElementById("ggScreen")
+var gameOver = false; 
+let level = 2;
+let add = 3
+let remove =  1
+let bLeft = document.getElementById("3")
+let bRight = document.getElementById('1')
+
+function add3points(){
+if (gameOver == false) { myPoints += add;
+update(); }
+
+}
+function remove1point(){
+    if (gameOver == false) {  myPoints -= remove;
+update(); }
+
+}
+
+
+function update (){
+console.log(myPoints)
+Points.innerText = myPoints
+clickC();
+
+if (myPoints === 10) {
+gg.innerHTML = "Congratulations, you got 10 points you won!" + "<p> You clicked " + clickCheck + " times. <p> On this playthrough, your total clicks is: " + clickCheck2;
+gameOver = true;
+
+buttonFunction()
+}
+
+}
+
+function clickC(){
+clickCheck++
+clickCheck2++
+}
+
+function buttonFunction(){
+    
+    
+    document.getElementById("buttonAppear").innerHTML = "<button id='nextLevel' onclick='setVar()'></button>";
+    let nxtLevel = document.getElementById("nextLevel")
+    console.log(level)
+    nxtLevel.innerText = "LEVEL " + level; 
+}
+
+
+function setVar() {
+
+if (level == 2) {
+        add = 8;
+        remove = 9;
+        nxt();
+}
+else if (level == 3 ){
+        add = 8;
+        remove = 5;
+        nxt();
+}
+else if (level == 4) {
+        add = 2;
+        remove = 9;
+        nxt();
+}
+else if (level == 5) {
+        add = 1;
+        remove = 9;
+        nxt();
+}
+else {console.log("error")}
+}
+
+function nxt(){
+    if (level <= 4){
+    level++
+    bLeft.innerText = 'ADD ' + add + ' POINTS'
+    bRight.innerText = 'REMOVE ' + remove + ' POINTS'
+    gameOver = false;
+    myPoints = 3
+    clickCheck = 0
+    Points.innerText = myPoints
+    gg.innerText = ""
+    document.getElementById("buttonAppear").innerHTML = ""
+console.log(level + " level") }
+else  {console.log("gg")
+
+document.getElementById("buttonAppear").innerHTML = "<button onclick=''>GG!</button>";
+
+}
+
+    }
+
+
+
+
+
+console.log(myPoints)
+
+
+    </script>
+</body>
+</html>
